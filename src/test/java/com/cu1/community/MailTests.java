@@ -27,7 +27,7 @@ public class MailTests {
     public void testHtmlMail() {
         Context context = new Context();
         //调用模板引擎直接去调用 template 文件下的页面
-        context.setVariable("username", "sunday");
+        context.setVariable("username", "sunday");  
         String content = templateEngine.process("mail/demo", context);
         System.out.println(content);
         mailClient.sendMail("1178079301@qq.com", "TEST", content);

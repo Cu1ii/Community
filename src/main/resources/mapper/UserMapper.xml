@@ -33,7 +33,7 @@
     <!--MyBatis 会自动生成主键注入 所以需要知道传入对象的主键名称-->
     <insert id="insertUser" parameterType="com.cu1.community.entity.User" keyProperty="id">
         insert into nowcodercommunity.user (<include refid="insertFields"></include>)
-        values(#{username}, #{password}, #{salt}, #{email}, #{type}, #{status}, #{activationCode}, #{headerUrl}, #{creatTime});
+        values(#{username}, #{password}, #{salt}, #{email}, #{type}, #{status}, #{activationCode}, #{headerUrl}, #{createTime});
     </insert>
 
     <update id="updateStatus">

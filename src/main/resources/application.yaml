@@ -30,4 +30,6 @@ mybatis:
   #开启驼峰命名转换
   configuration:
     map-underscore-to-camel-case: true
+    # 底层自动生成 Id 并回填
+    use-generated-keys: true
   # type-aliases-package: com.cu1.pojo 扫描包

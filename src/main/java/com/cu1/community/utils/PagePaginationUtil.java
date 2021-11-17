@@ -4,7 +4,7 @@ package com.cu1.community.utils;
  * 封装处理分页相关的信息
  */
 @SuppressWarnings("all")
-public class PagePaginationUtils {
+public class PagePaginationUtil {
 
     //当前的页码
     private int current = 1;

@@ -1,6 +1,6 @@
 package com.cu1.community.controller;
 
-import com.cu1.community.utils.PagePaginationUtils;
+import com.cu1.community.utils.PagePaginationUtil;
 import com.cu1.community.entity.DiscussPost;
 import com.cu1.community.entity.User;
 import com.cu1.community.service.DiscussPostService;
@@ -26,7 +26,7 @@ public class HomeController {
     private UserService userService;
 
     @RequestMapping(path = {"/index", "/"}, method = RequestMethod.GET)
-    public String getIndexPage(Model model, PagePaginationUtils page) {
+    public String getIndexPage(Model model, PagePaginationUtil page) {
 
         //方法调用之前 SpringMVC 会自动实例化后 model 和 page 并将 page 注入 model
         //但是 但是 在实际应用中会出现 thymeleaf 取不出值的情况 所以一定要加上!!!!!!
