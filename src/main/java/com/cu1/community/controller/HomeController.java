@@ -1,6 +1,6 @@
 package com.cu1.community.controller;
 
-import com.cu1.community.Utils.PagePaginationUtils;
+import com.cu1.community.utils.PagePaginationUtils;
 import com.cu1.community.entity.DiscussPost;
 import com.cu1.community.entity.User;
 import com.cu1.community.service.DiscussPostService;

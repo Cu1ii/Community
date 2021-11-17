@@ -1,4 +1,4 @@
-package com.cu1.community.Utils;
+package com.cu1.community.utils;
 
 /**
  * 封装处理分页相关的信息
