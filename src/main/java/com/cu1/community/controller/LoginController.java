@@ -3,6 +3,8 @@ package com.cu1.community.controller;
 import com.cu1.community.entity.User;
 import com.cu1.community.service.UserService;
 import com.cu1.community.utils.CommunityConstant;
+import com.google.code.kaptcha.Producer;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,13 +12,27 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.imageio.ImageIO;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.http.HttpResponse;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
 public class LoginController implements CommunityConstant {
 
+    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
     @Autowired
-    UserService userService;
+    private UserService userService;
+
+    @Autowired
+    private Producer kaptchaProduce;
 
     //设置返回登录页面
     @RequestMapping(path = "/register", method = RequestMethod.GET)
@@ -62,5 +78,36 @@ public class LoginController implements CommunityConstant {
         return "site/operate-result";
     }
 
+    /**
+     * 获取验证码图片 需要用请求 HttpServletResponse 对象 以及 Session 返回图片
+     * @param response
+     */
+    @RequestMapping(path = "/kaptcha", method = RequestMethod.GET)
+    public void getKaptcha(HttpServletResponse response, HttpSession session) {
+
+        //生成验证码以及验证码图片
+        String text = kaptchaProduce.createText();
+
+        BufferedImage image = kaptchaProduce.createImage(text);
+
+        //将验证码存入 Session
+        session.setAttribute("kaptcha", text);
+
+        //将图片返回给浏览器
+        response.setContentType("image/png");
+        try {
+            ServletOutputStream outputStream = response.getOutputStream();
+            /**
+             * image 输出的是哪一个图片
+             * "png" 以什么格式输出
+             * outputStream 用哪一个输出流输出
+             */
+            ImageIO.write(image, "png", outputStream);
+
+        } catch (IOException e) {
+            logger.error("响应验证码失败" + e.getMessage());
+        }
+
+    }
 
 }

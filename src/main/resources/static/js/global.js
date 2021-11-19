@@ -1,3 +1,6 @@
+/*声明一个全局变量 为项目名*/
+var CONTEXT_PATH = "/community";
+
 window.alert = function(message) {
 	if(!$(".alert-box").length) {
 		$("body").append(
