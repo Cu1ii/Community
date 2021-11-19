@@ -2,6 +2,7 @@ package com.cu1.community.service;
 
 import com.cu1.community.dao.UserMapper;
 import com.cu1.community.entity.User;
+import com.cu1.community.utils.CommunityConstant;
 import com.cu1.community.utils.CommunityUtil;
 import com.cu1.community.utils.MailClient;
 import org.apache.commons.lang3.StringUtils;
@@ -17,7 +18,7 @@ import java.util.Map;
 import java.util.Random;
 
 @Service
-public class UserService {
+public class UserService implements CommunityConstant {
 
     @Autowired
     private UserMapper userMapper;
@@ -102,5 +103,22 @@ public class UserService {
         return map;
     }
 
+    /**
+     * @param userId 用户 Id
+     * @param code 激活码
+     * @return 返回激活状态
+     */
+    public int activation(int userId, String code) {
+        User user = userMapper.selectById(userId);
+        //如果已经激活过
+        if (user.getStatus() == 1) {
+            return ACTIVATION_REPEAT;
+        } else if (user.getActivationCode().equals(code)) {
+            userMapper.updateStatus(userId, 1); //激活码对应之后把激活状态改为激活
+            return ACTIVATION_SUCCESS;
+        } else {
+            return ACTIVATION_FAILURE;
+        }
+    }
 
 }
