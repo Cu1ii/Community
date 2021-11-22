@@ -146,7 +146,7 @@ public class LoginController implements CommunityConstant {
     public String logout(@CookieValue("ticket") String ticket) {
         userService.logout(ticket);
         //重定向默认 GET 请求
-        return "redirect: /login";
+        return "redirect:/login";
     }
 
 }
