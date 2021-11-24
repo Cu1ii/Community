@@ -1,6 +1,7 @@
 package com.cu1.community.controller;
 
 
+import com.cu1.community.annotation.LoginRequired;
 import com.cu1.community.entity.User;
 import com.cu1.community.service.UserService;
 import com.cu1.community.utils.CommunityUtil;
@@ -47,6 +48,7 @@ public class UserController {
     @Autowired
     private HostHolder hostHolder;
 
+    @LoginRequired
     @RequestMapping(path = "/setting", method = RequestMethod.GET)
     public String getSettingPage() { return "site/setting"; }
 
@@ -54,6 +56,7 @@ public class UserController {
      * 上传的时候表单上传方式必须要为 Post
      * @multipartFile 前端传过来的文件
      */
+    @LoginRequired
     @RequestMapping(path = "/upload", method = RequestMethod.POST)
     public String uploadHeader(MultipartFile headerImage, Model model) {
 
