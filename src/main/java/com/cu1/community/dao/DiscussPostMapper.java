@@ -21,4 +21,11 @@ public interface DiscussPostMapper {
     * 查询行数
     * */
     int selectDiscussPostRows(@Param("userId") int userId);
+
+    /**
+     * 增加帖子
+     * @param discussPost 要增加的帖子
+     * @return
+     */
+    int insertDiscussPost(DiscussPost discussPost);
 }

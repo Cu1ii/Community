@@ -1,9 +1,10 @@
 package com.cu1.community.utils;
 
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.DigestUtils;
-
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 import java.util.UUID;
 
 public class CommunityUtil {
@@ -26,6 +27,38 @@ public class CommunityUtil {
             return null;
         }
         return DigestUtils.md5DigestAsHex(key.getBytes(StandardCharsets.UTF_8));
+    }
+
+    /**
+     *
+     * @param code 编码
+     * @param msg 提示信息
+     * @param map 封装业务数据
+     * @return
+     */
+    public static String getJSONString(int code, String msg, Map<String, Object> map) {
+
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("code", code);
+
+        jsonObject.put("msg", msg);
+
+        if (map != null) {
+            for(String key: map.keySet()) {
+                jsonObject.put(key, map.get(key));
+            }
+        }
+
+        return jsonObject.toJSONString();
+    }
+
+    public static String getJSONString(int code, String msg) {
+        return getJSONString(code, msg, null);
+    }
+
+    public static String getJSONString(int code) {
+        return getJSONString(code, null, null);
     }
 
 }

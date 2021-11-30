@@ -70,7 +70,6 @@ public class SensitiveFilter {
         } catch (IOException e) {
             logger.error("加载敏感词文件失败: " + e.getMessage());
         }
-
     }
 
     /**
