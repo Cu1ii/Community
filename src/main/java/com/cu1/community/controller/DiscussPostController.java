@@ -50,7 +50,7 @@ public class DiscussPostController implements CommunityConstant {
         post.setContent(content);
         post.setCreateTime(new Date());
 
-        discussPostService.addDiscussPostMapper(post);
+        discussPostService.addDiscussPost(post);
 
         //报错的情况以后统一处理
         return CommunityUtil.getJSONString(0, "发布成功");

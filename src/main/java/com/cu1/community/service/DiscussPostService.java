@@ -26,7 +26,7 @@ public class DiscussPostService {
         return discussPostMapper.selectDiscussPostRows(userId);
     }
 
-    public int addDiscussPostMapper(DiscussPost discussPost) {
+    public int addDiscussPost(DiscussPost discussPost) {
         if (discussPost == null) {
             throw new IllegalArgumentException("参数不能为空");
         }
@@ -43,4 +43,14 @@ public class DiscussPostService {
     }
 
     public DiscussPost findDiscussPostById(int id) { return discussPostMapper.selectDiscussPostById(id); }
+
+    /**
+     * 修改帖子评论数量
+     * @param id 帖子 id
+     * @param commentCount 最新评论数量
+     * @return 更新的行号
+     */
+    public int updateCommentCount(int id, int commentCount) {
+        return discussPostMapper.updateCommentCount(id, commentCount);
+    }
 }
