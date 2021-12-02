@@ -28,4 +28,6 @@ public interface DiscussPostMapper {
      * @return
      */
     int insertDiscussPost(DiscussPost discussPost);
+
+    DiscussPost selectDiscussPostById(int id);
 }

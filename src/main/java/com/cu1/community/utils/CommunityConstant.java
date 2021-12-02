@@ -26,4 +26,14 @@ public interface CommunityConstant {
      * 选择记住我的登录状态凭证超时时间
      */
     int REMEBER_EXPIRED_SECONDS = 3600 * 24 * 100;
+
+    /**
+     * 实体类型: 帖子
+     */
+    int ENTITY_TYPE_POST = 1;
+
+    /**
+     * 实体类型: 评论
+     */
+    int ENTITY_TYPE_COMMENT = 2;
 }
