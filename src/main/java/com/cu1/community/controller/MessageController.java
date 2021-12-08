@@ -123,6 +123,7 @@ public class MessageController {
                 return userService.findUserById(parseInt);
             }
         }
+        //自己给自己发送的时候, 上面的循环不会 return 所以在下面需要单独返回一个
         int parseInt = Integer.parseInt(ids[0]);
         return userService.findUserById(parseInt);
     }

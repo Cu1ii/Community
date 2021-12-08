@@ -51,4 +51,10 @@ public class HomeController {
         model.addAttribute("page", page);
         return "index";
     }
+
+    /**
+     * 返回 500 页面
+     */
+    @RequestMapping(path = "/error", method = RequestMethod.GET)
+    public String getErrorPage() { return "error/500"; }
 }
