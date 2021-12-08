@@ -91,6 +91,7 @@
 										<label for="recipient-name" class="col-form-label">发给：</label>
 										<input type="text" class="form-control" id="recipient-name">
 									</div>
+									<!--th:value="${target.username}"-->
 									<div class="form-group">
 										<label for="message-text" class="col-form-label">内容：</label>
 										<textarea class="form-control" id="message-text" rows="10"></textarea>
@@ -133,7 +134,7 @@
 								</span>
 							</h6>
 							<div>
-								<a th:href="@{|/letter/letter-detail/${map.conversation.conversationId}|}" th:utext="${map.conversation.content}">米粉车, 你来吧!</a>
+								<a th:href="@{|/letter/detail/${map.conversation.conversationId}|}" th:utext="${map.conversation.content}">米粉车, 你来吧!</a>
 								<ul class="d-inline font-size-12 float-right">
 									<li class="d-inline ml-2"><a href="#" class="text-primary">共
 										<i th:text="${map.letterCount}">

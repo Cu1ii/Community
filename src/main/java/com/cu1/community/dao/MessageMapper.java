@@ -47,5 +47,17 @@ public interface MessageMapper {
      */
     int selectLetterUnreadCount(int userId, String conversationId);
 
+    /**
+     * 增加私信消息
+     * @param message 要发送的消息
+     */
+    int insertMessage(Message message);
+
+    /**
+     * 设置修改状态
+     * @param ids 修改的消息集合
+     * @param status 要修改成为的状态
+     */
+    int updateStatus(List<Integer> ids, int status);
 }
 
