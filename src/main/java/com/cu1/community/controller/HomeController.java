@@ -1,5 +1,7 @@
 package com.cu1.community.controller;
 
+import com.cu1.community.service.LikeService;
+import com.cu1.community.utils.CommunityConstant;
 import com.cu1.community.utils.PagePaginationUtil;
 import com.cu1.community.entity.DiscussPost;
 import com.cu1.community.entity.User;
@@ -17,13 +19,16 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class HomeController {
+public class HomeController implements CommunityConstant {
 
     @Autowired
     private DiscussPostService discussPostService;
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private LikeService likeService;
 
     @RequestMapping(path = {"/index", "/"}, method = RequestMethod.GET)
     public String getIndexPage(Model model, PagePaginationUtil page) {
@@ -44,6 +49,8 @@ public class HomeController {
                 //根据帖子信息中的 userId 找到用户
                 User user = userService.findUserById(discussPost.getUserId());
                 map.put("user", user);
+                long likeCount = likeService.findEntityLikeCount(ENTITY_TYPE_POST, discussPost.getId());
+                map.put("likeCount", likeCount);
                 discussPosts.add(map);
             }
         }
