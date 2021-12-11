@@ -5,12 +5,14 @@ import com.cu1.community.service.LikeService;
 import com.cu1.community.utils.CommunityUtil;
 import com.cu1.community.utils.HostHolder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 
+@Controller
 public class LikeController {
 
     @Autowired
@@ -25,8 +27,8 @@ public class LikeController {
      * @param entityId 点赞的实体 id
      * @return 带有点赞信息的 map
      */
-    @RequestMapping(path = "/like", method = RequestMethod.POST)
     @ResponseBody
+    @RequestMapping(path = "/like", method = RequestMethod.POST)
     public String like(int entityType, int entityId) {
         User user = hostHolder.getUser();
         //点赞
@@ -41,6 +43,4 @@ public class LikeController {
         map.put("likeStatus", likeStatus);
         return CommunityUtil.getJSONString(0, null, map);
     }
-
-
 }
