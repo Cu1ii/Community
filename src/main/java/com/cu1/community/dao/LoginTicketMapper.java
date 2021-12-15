@@ -1,9 +1,12 @@
 package com.cu1.community.dao;
 
 import com.cu1.community.entity.LoginTicket;
+import jdk.jfr.Enabled;
 import org.apache.ibatis.annotations.*;
 
 @Mapper
+//声明不推荐使用这个组件
+@Deprecated
 public interface LoginTicketMapper {
 
     @Insert({
