@@ -33,7 +33,7 @@ public class FollowService implements CommunityConstant {
             @Override
             public Object execute(RedisOperations operations) throws DataAccessException {
                 String followeeKey = RedisKeyUtil.getFolloweeKey(userId, entityType);
-                String followerKey = RedisKeyUtil.getFollowerKey(entityType, entityId);
+                String followerKey = RedisKeyUtil.getFollowerKey(entityId, entityType);
 
                 operations.multi();
 
@@ -56,7 +56,7 @@ public class FollowService implements CommunityConstant {
             @Override
             public Object execute(RedisOperations operations) throws DataAccessException {
                 String followeeKey = RedisKeyUtil.getFolloweeKey(userId, entityType);
-                String followerKey = RedisKeyUtil.getFollowerKey(entityType, entityId);
+                String followerKey = RedisKeyUtil.getFollowerKey(entityId, entityType);
                 operations.multi();
                 operations.opsForZSet().remove(followeeKey, entityId);
                 operations.opsForZSet().remove(followerKey, userId);

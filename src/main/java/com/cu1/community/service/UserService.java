@@ -239,7 +239,7 @@ public class UserService implements CommunityConstant {
     private User initCache(int userId) {
         User user = userMapper.selectById(userId);
         String redisKey = RedisKeyUtil.getUserKey(userId);
-        redisTemplate.opsForValue().set(redisKey, user, 3600, TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set(redisKey, user);
         return user;
     }
 
