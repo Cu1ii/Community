@@ -229,7 +229,7 @@ public class UserService implements CommunityConstant {
      * 1.优先从缓存中取值
      */
     private User getCache(int userId) {
-        String redisKey = RedisKeyUtil.getUserLikeKey(userId);
+        String redisKey = RedisKeyUtil.getUserKey(userId);
         return (User) redisTemplate.opsForValue().get(redisKey);
     }
 
@@ -238,7 +238,7 @@ public class UserService implements CommunityConstant {
      */
     private User initCache(int userId) {
         User user = userMapper.selectById(userId);
-        String redisKey = RedisKeyUtil.getUserLikeKey(userId);
+        String redisKey = RedisKeyUtil.getUserKey(userId);
         redisTemplate.opsForValue().set(redisKey, user, 3600, TimeUnit.SECONDS);
         return user;
     }
