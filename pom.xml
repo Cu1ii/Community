@@ -49,6 +49,7 @@
             <artifactId>commons-lang3</artifactId>
         </dependency>
 
+
         <!--SpringBoot 邮箱发送的 jar 包-->
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail -->
         <dependency>
@@ -60,7 +61,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
