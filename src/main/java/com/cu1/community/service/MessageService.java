@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.HtmlUtils;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 @Service
@@ -75,5 +76,42 @@ public class MessageService {
 
     public int readMessage(List<Integer> ids) {
         return messageMapper.updateStatus(ids, 1);
+    }
+
+    /**
+     * 读取最后一条通知
+     * @param userId 要查询的用户 id
+     * @param topic 要查询的主题
+     * @return 返回查到的通知
+     */
+    public Message findLatestNotice(int userId, String topic) {
+        return messageMapper.selectLatestNotice(userId, topic);
+    }
+
+    /**
+     * 读取通知数量
+     * @param userId 要查询的用户 id
+     * @param topic 要查询的主题
+     * @return 返回该主题下的通知数量
+     */
+    public int findNoticeCount(int userId, String topic) {
+        return messageMapper.selectNoticeCount(userId, topic);
+    }
+
+    /**
+     * 读取某主题下的通知数量
+     * @param userId 要查询的用户 id
+     * @param topic 要查询的主题 如果为空则查询所有主题
+     * @return 返回未读数量
+     */
+    public int findNotcieUnreadCount(int userId, String topic) {
+        return messageMapper.selectNoticeUnreadCount(userId, topic);
+    }
+
+    /**
+     * 某个主题所包含的通知列表
+     */
+    public List<Message> findNotices(int userId, String topic, int offset, int limit) {
+        return messageMapper.selectNotices(userId, topic, offset, limit);
     }
 }
