@@ -1,9 +1,9 @@
 # 47.100.227.175
 spring:
   datasource:
-    username: MySqlRoot
-    password: 370802mysql
-    url: jdbc:mysql://47.100.227.175:3306/nowcodercommunity?useUnicode=true&characterEncoding=utf-8
+    username: nicai
+    password: bu_gao_su_ni
+    url: jdbc:mysql://localhost:3306/nowcodercommunity?useUnicode=true&characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource # 配置 druid 数据源
 
